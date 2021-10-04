@@ -7,6 +7,10 @@ import CalcButton from './components/CalcButton';
 import { addOne } from './actions';
 import { applyNumber } from './actions';
 import { changeOpp } from './actions';
+import {clear} from './actions';
+import {setMem} from './actions';
+import {applyMem} from './actions';
+import {clearMem} from "./actions";
 function App() {
 const [state, dispatch] = useReducer(reducer, initialState);
 //  const handleAddOne = () => {
@@ -18,6 +22,22 @@ const handleApplyNumber = (num) => {
 }
 const handleChangeOpp = (opp) => {
   dispatch(changeOpp(opp));
+}
+
+const handleClear = () => {
+  dispatch(clear());
+}
+
+const handleSetMem = () => {
+  dispatch(setMem());
+}
+
+const handleApplyMem = () => {
+  dispatch(applyMem());
+}
+
+const handleClearMem = () => {
+  dispatch(clearMem());
 }
 
 return (
@@ -37,9 +57,9 @@ return (
             </div>
             
             <div className="row">
-              <CalcButton value={"M+"}/>
-              <CalcButton value={"MR"}/>
-              <CalcButton value={"MC"}/>
+              <CalcButton value={"M+"} onClick={handleSetMem}/>
+              <CalcButton value={"MR"} onClick={handleApplyMem}/>
+              <CalcButton value={"MC"} onClick={handleClearMem}/>
             </div>
 
             <div className="row">
@@ -67,7 +87,7 @@ return (
             </div>
 
             <div className="row ce_button">
-              <CalcButton value={"CE"}/>
+              <CalcButton value={"CE"} onClick={handleClear}/>
             </div>
 
           </form>
